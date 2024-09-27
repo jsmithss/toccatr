@@ -1,0 +1,37 @@
+---
+title: "Tallyho Package development"
+author: "James Smith, Talisman Therapeutics" 
+output: 
+  html_document: 
+    df_print: paged 
+    code_folding: hide 
+    code_download: true 
+  date: Thu 15 Feb 2024 
+---
+
+## Intro
+
+**Tali**sman **H**elp for **O**pera 
+
+```{r setup, warning=FALSE, message=FALSE}
+library(devtools)
+library(roxygen2)
+
+library(tidyverse, quietly = TRUE) 
+library(janitor, quietly = TRUE) 
+library(plotly, quietly = TRUE)
+source("//10.0.3.251/Projects/Lab reference/Settings and Scientific Reference/slackrs/core_scripts/neuromuscular_function_1_6.r")
+
+```
+
+Add clipfromxl to functions
+Need to add prismy and plate centering to functions and remove generic ones
+Work out if tubemap list can be added to a function
+
+# Assuming your dataframe is called 'iris'
+Filtereing for platemap
+first_species <- iris[1, "Species"]  # Get the species of the first row
+filtered_df <- iris %>%
+  filter(Species == first_species)  # Select rows with the same species
+  select compound and row col, 
+  unique(0)
