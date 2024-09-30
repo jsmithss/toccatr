@@ -1,6 +1,9 @@
 #' Replace space with underscore
 #' 
+#' Self explanatory
+#' 
 #' Example usage: mtcars$newname <- repunderscore(rownames(mtcars))
+#' 
 #' @param x Variable you wish to remove spaces from
 #' @return A variable with underscores replacing any whitespaces
 #' @examples
@@ -13,7 +16,11 @@ repunderscore <- function(x, y = " ") gsub(y, "_", x)
 
 #' Replace underscore with space
 #' 
+#' Name says it all.
+#' 
+#' This is the reverse of repunderscore.
 #' Example usage: user_df$new <- repspace(user_df$colname)
+#' 
 #' @param x Variable you wish to remove underscores from
 #' @return A variable with spaces instead of underscores
 #' @examples
@@ -26,7 +33,9 @@ repspace <- function(x, y = "_") gsub(y, " ", x)
 #' ZScore a variable
 #' 
 #' via Hadley Wickham/Twitter
+#' 
 #' Example usage: user_df$new <- rescale_z(user_df$colname)
+#' 
 #' @param x Numeric variable you wish to rescale
 #' @return A new variable scaled by mean and sd
 #' @examples
@@ -38,10 +47,12 @@ rescale_z <- function(x) {
 
 #' Squish a variable
 #' 
-#' via Hadley Wickham/Twitter
 #' Specifies lower and upper bounds of a variable to defined values
-#' Any values below minimum/ above maximum will be replaced with min/max value repectively
-#' Example usage: user_df$new <- squish(user_df$colname)
+
+#' via Hadley Wickham/Twitter
+#' Any values below minimum/ above maximum will be replaced with min/max value respectively
+#' #' Example usage: user_df$new <- squish(user_df$colname)
+#' 
 #' @param x Numeric variable you wish to limit
 #' @param min Lower limit for variable
 #' @param max Upper limit for variable
@@ -61,7 +72,9 @@ squish <- function(x, min, max) {
 #' Not in
 #' 
 #' Easier negative filtering
+#' 
 #' Example usage: aliens <- starwars %>% filter(species %nin% c("Human", "Droid"))
+#' 
 #' @return Logical list 
 #' @examples
 #' iris_filtered <- subset(iris, (Species %nin% c("setosa", "versicolor")))
@@ -72,7 +85,9 @@ squish <- function(x, min, max) {
 #' Clip to Excel
 #' 
 #' Collects a dataframe as clipboard contents.
+#' 
 #' Do not use for massive dataframes
+#' 
 #' Example usage: clip2xl(df)
 #' @param x Dataframe to copy
 #' @param row.names (optional) logical
@@ -90,7 +105,9 @@ clip2xl <- function(x,row.names=FALSE,col.names=TRUE,...) {
 #' Clip to CSV
 #' 
 #' Collects a dataframe as clipboard contents.
+#' 
 #' Do not use for massive dataframes
+#' 
 #' Example usage: clip2csv(df)
 #' @param x Dataframe to copy
 #' @param row.names (optional) logical
@@ -108,7 +125,9 @@ clip2csv <- function(x,row.names=FALSE,col.names=TRUE,...) {
 #' Clip from Excel
 #' 
 #' Make a dataframe with clipboard contents, from Excel
+#' 
 #' Should include header row, tidy column names will be produced
+#' 
 #' Example usage: df <- clipfromxl()
 #' @examples
 #' df <- clipfromxl()
@@ -122,6 +141,7 @@ clipfromxl <- function(){
 }
 
 #' Tubemap colour list
+#' 
 #' A List of colours inspired by the London Underground Map
 #'
 #' This vector contains a list of distinct 23 colours: after 16 it becomes greyscale.
@@ -139,7 +159,9 @@ tubemap <- c("#E32017", "#FFD300", "#00782A", "#F3A9BB", "#868F98", "#9B0056",
 
 #' Jiggle
 #' 
-#' Relocate (aka reorder) columns in a dataframe so that character columns are first
+#' Relocate (aka reorder) columns in a dataframe so that character columns are first.
+#' 
+#' 
 #' Example usage: df <- jiggle(df)
 #' @param dfname Dataframe
 #' @return Re-ordered dataframe
@@ -154,6 +176,7 @@ jiggle <- function(dfname) {
 
 
 #' James Theme
+#' 
 #' A minimal ggplot theme
 #'
 #' This is superseded by theme_tt but kept for continuity with old scripts
@@ -192,6 +215,7 @@ theme_js <- function() {
 #' Talisman Theme
 #'
 #' A minimal ggplot theme.
+#' 
 #' Talisman colours not yet included.
 #' Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
 #' should be set to Cairo PNG (or anything except "windows".
@@ -224,6 +248,7 @@ theme_tt = function(){
 #' Talisman Theme for Facets
 #'
 #' A minimal ggplot theme for faceted charts.
+#' 
 #' Talisman colours not yet included.
 #' Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
 #' should be set to Cairo PNG (or anything except "windows".
@@ -247,8 +272,9 @@ theme_ttf = function(){
 
 #' Hotplate
 #'
-#' makes a heatmap of the plate
-#' needs numerical row and column info
+#' Makes a heatmap of the plate
+#' 
+#' Needs numerical row and column info
 #' only works for 96 well plate at present 
 #' if numerical row col not available, run well2row first
 #' 
@@ -285,7 +311,7 @@ hotplate <- function(dfname, metricname) {
 
 #' Well2row
 #' 
-#' makes row and column numbers
+#' Makes row and column numbers
 #' Requires well name in A01 format
 #' 
 #' @param dfname Dataframe
@@ -312,9 +338,11 @@ return(dfw)
 
 #' Platemap
 #'
-#' Makes a colour map of samples on the plate
+#' Makes a colour map of samples on the plate.
+#' 
 #' Requires row and column in numerical format
-#' Only works for 96 well at present
+#' Only works for 96 well at present. Dataframes with duplicate or multiple 
+#' values for each well may cause problems, so aim for 96 or less observations.
 #' 
 #' @param dfname Dataframe
 #' @param metricname Sample type, default is compound
@@ -351,18 +379,28 @@ platemap <- function(dfname, metricname = compound) {
 
 
 
-#### READ HARMONY PLATERESULTS ####
-#needs roxygen prep below here
 
+
+
+#' Harmony Reader
+#'
+#' Imports all Harmony plate results from directory and subdirectories.
+#' 
+#' Any file named using Harmony default convention of PlateResults.txt is included
+#' Platename and Evaluation number is added to each row,
+#' this info comes from the metadata in the head of the txt file.
+#' Multiple plates are appended to the bottom of the resulting dataframe
+#' 
+#' @param pthname Path or directory to read
+#' @return Dataframe
+#' @examples
+#' df <- harmread_pl("/my_subdirectory")
+#' pth <- getwd()
+#' df <-harmread_pl(pth)
+#' @export
 harmread_pl <- function(pthname) {
-  # arguments are pathname
-  # imports all PlateResults.txt files from any subdirectory into harmony
-  # uses Harmony platename 
-  # usage: my_data <- harmread_pl("//10.0.3.251/Projects/Tigers shared/ELB011_Electronic_Lab_Book/ELB011-30 - All data")
-  
   require(tidyverse)
   require(janitor)
-
 
  hinput <- data.frame()
   bartrack <- ""
@@ -408,17 +446,27 @@ harmread_pl <- function(pthname) {
 
 
 
-#### READ HARMONY OBJECTRESULTS ####
 
+#' Harmony Object Reader
+#'
+#' Imports all Harmony object results from directory and subdirectories.
+#' 
+#' Any file which matches the filename specified is imported to one dataframe.
+#' Platename and Evaluation number is added to each row,
+#' this info comes from the metadata in the head of the txt file.
+#' Multiple plates are appended to the bottom of the resulting dataframe
+#' 
+#' @param pthname Path or directory to read
+#' @param flename Filename pattern
+#' @return Dataframe
+#' @examples
+#' df <- harmread_ob("/my_subdirectory", "Objects_Population - fov.txt")
+#' pth <- getwd()
+#' df <-harmread_pl(pth, "Objects_Population - nuclei.txt")
+#' @export
 harmread_ob <- function(pthname, flename) {
-  # arguments are pathname
-  # imports all Object results matching given name files from any subdirectory into harmony
-  # uses Harmony platename 
-  # usage: my_data <- harmread_ob("//10.0.3.251/Projects/Tigers shared/ELB011_Electronic_Lab_Book/ELB011-30 - All data", "Objects_Population - Whole Image.txt")
-  
   require(tidyverse)
   require(janitor)
-  
   
   hinput <- data.frame()
   bartrack <- ""
@@ -446,7 +494,7 @@ harmread_ob <- function(pthname, flename) {
     filter(n>1) %>% 
     ungroup()
   
-  hinput<- clean_names(hinput, replace = c("µ" = "u"))
+  hinput<- clean_names(hinput, replace = c("µ" = "u")) #replace=janitor:::mu_to_u
   hinput[] <- lapply(hinput, function(x) (gsub("NaN", NA, x))) #replacing harmony NaN with R NA
   hinput <- type.convert(hinput, as.is = TRUE) #finds integer or string columns and re-applies
   
@@ -464,7 +512,7 @@ harmread_ob <- function(pthname, flename) {
 
 
 
-
+### DONE TO HERE ###
 
 
 #### MAJSTY SCATTER EXPLORER ####
