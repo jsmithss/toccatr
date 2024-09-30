@@ -352,6 +352,7 @@ platemap <- function(dfname, metricname = compound) {
 
 
 #### READ HARMONY PLATERESULTS ####
+#needs roxygen prep below here
 
 harmread_pl <- function(pthname) {
   # arguments are pathname
