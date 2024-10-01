@@ -512,13 +512,26 @@ harmread_ob <- function(pthname, flename) {
 
 
 
-### DONE TO HERE ###
 
 
-#### MAJSTY SCATTER EXPLORER ####
-
-# usage majsty(user_df, "no_of_cells", "stain_intensity")
-# column names are optional
+#' Majsty interactive scatter plots
+#'
+#' Select and colour points in a scatterplot
+#' 
+#' A shiny application to create scatter plots with selectable x and y axes for EDA
+#' Points can be highlighted in different colours, and importantly these colours persist
+#' when the axes are changed, for example to visualisation where outliers in one metric
+#' appear in other metrics.
+#' Starting X and Y variables can be preselected
+#' 
+#' @param data Dataframe to plot
+#' @param x_axis_variable Data to plot on x axis (optional, must be in quotes)
+#' @param y_axis_variable Data to plot on y axis (optional, must be in quotes)
+#' @return Interactive scatterplot
+#' @examples
+#' majsty(df)
+#' majsty(user_df, "no_of_cells", "stain_intensity")
+#' @export
 majsty <- function(data, x_axis_variable = NULL, y_axis_variable = NULL){
   require(shiny)
   require(ggplot2)
