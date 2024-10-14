@@ -172,6 +172,13 @@ jiggle <- function(dfname) {
   require(tidyverse)
   dfjigged <- dfname %>% relocate(where(is.numeric), .after = where(is.character))
   return(dfjigged)
+  #Untested base-r equivalent
+  #jiggle <- function(dfname) {
+  #num_cols <- sapply(dfname, is.numeric)
+  #char_cols <- sapply(dfname, is.character)
+  #dfjigged <- dfname[, c(which(char_cols), which(num_cols))]
+  #return(dfjigged)
+  #}
 }
 
 
@@ -622,11 +629,28 @@ shinyApp(ui, server)
 
 }
 
-#### BARCHARTR ####
 
+
+
+
+
+#' Quick summary barcharts
+#'
+#' Plots mean with SD error bars in GGplot
+#' 
+#' A quick function to plot summary data barcharts with error bars calculated means.
+#' A time-saver rather since GGplot doesn't do this by default, but customisation options are limited.
+#' Default colours are based on London underground map. Recommended maximum number of bars is 16, absolute limit is 23.
+#' 
+#' @param df Dataframe to plot
+#' @param varname Variable to plot on barchart
+#' @param groupnames Variable which lists groups which will become bar labels
+#' @return ggplot object
+#' @examples
+#' barchartr(df, number_of_cells, compound)
+#' bc <- barchartr(df, GFP_pos_cells, treatment)
+#' @export
 barchartr <- function(dfname, varname, groupnames){
-  # Function to calculate the mean and the standard deviation for each group and plot barchart
-  # Usage: bc <- barchartr(df, number_of_cells, compound)
   require(tidyverse)
   xvarname <- deparse(substitute(varname))
   
@@ -652,55 +676,95 @@ return(meanbarchart)
 }
 
 
-#### PLOXY PLOTS XY ####
-# usage ploxy(user_df)
 
-ploxy <- function(data){
+#' Ploxy interactive scatter plots
+#'
+#' Shiny and plotly combine for scatterplot interaction
+#' 
+#' A shiny application to create scatter plots with selectable x and y axes for EDA
+#' X and Y variables can be interactively changed, along with
+#' Plotly actions such as zoom, pan and save
+#' 
+#' @param data Dataframe to plot
+#' @return Interactive scatterplot
+#' @examples
+#' ploxy(df)
+#' ploxy(mtcars)
+#' @export
+ploxy <- function(data) {
   require(shiny)
   require(plotly)
-  require(tidyverse)  
+  require(tidyverse)
   
-
-column_names <- (colnames(data))
-
-
-ui <- fluidPage(
-  # Application title
-  titlePanel("Ploxy: plots xy"),
+  # get column names for use in axis selection
+  column_names <- (colnames(data))
   
   
-  fluidRow(
-    column(12, plotlyOutput("myPlot"))
-           ),
-  fluidRow(
-    column(6, selectInput("xvariable", "Select the X variable", column_names)),
-    column(6, selectInput("yvariable", "Select the Y variable", column_names))
-          ),
-  fluidRow(
-    column(6, selectInput("textvariable", "Select the annotation", column_names)),
-    column(6, selectInput("colourvariable", "Colour points by", column_names))
-          )
-               )
+  ui <- fluidPage(
+    # Application title
+    titlePanel("Ploxy: plots xy"),
+    
+    # Page layout
+    fluidRow(column(12, plotlyOutput("myPlot"))),
+    fluidRow(column(
+      6,
+      selectInput("xvariable", "Select the X variable", column_names)
+    ), column(
+      6,
+      selectInput("yvariable", "Select the Y variable", column_names)
+    )),
+    fluidRow(column(
+      6,
+      selectInput("textvariable", "Select the annotation", column_names)
+    ), column(
+      6,
+      selectInput("colourvariable", "Colour points by", column_names)
+    ))
+  )
   
-
-server <- function(input, output, session) {
-  output$myPlot <- renderPlotly({
-    req(input$yvariable)
-    plot_ly(data = data, x = ~get(input$xvariable), y = ~get(input$yvariable), color =~get(input$colourvariable), text = ~get(input$textvariable), type = "scatter", mode = "markers", alpha = 0.6, hoverinfo = "text") %>%
-      layout(xaxis = list(title = " "), yaxis = list(title = " "), legend=list(title= list(text = " "))) 
-  })
+  # Make plotly scatter plot
+  server <- function(input, output, session) {
+    output$myPlot <- renderPlotly({
+      req(input$yvariable)
+      plot_ly(
+        data = data,
+        x = ~ get(input$xvariable),
+        y = ~ get(input$yvariable),
+        color =  ~ get(input$colourvariable),
+        text = ~ get(input$textvariable),
+        type = "scatter",
+        mode = "markers",
+        alpha = 0.6,
+        hoverinfo = "text"
+      ) %>%
+        layout(
+          xaxis = list(title = " "),
+          yaxis = list(title = " "),
+          legend = list(title = list(text = " "))
+        )
+    })
+  }
+  
+  shinyApp(ui, server)
+  
 }
 
-shinyApp(ui, server) 
-
-}
 
 
-#### PLOXYTIME PLOTS XY WITH ANIMATION ####
-# usage ploxytime(user_df)
-# must have a column called timepoint
-
-
+#' Ploxytime interactive scatter plots with animation
+#'
+#' Shiny and plotly combine for timecourse interaction
+#' 
+#' A shiny application to create scatter plots with selectable x and y axes for EDA
+#' Data must have a variable called timepoint
+#' X and Y variables can be interactively changed, along with
+#' Plotly actions such as zoom, pan and save
+#' 
+#' @param data Dataframe to plot
+#' @return Interactive scatterplot
+#' @examples
+#' ploxy(df)
+#' @export
 ploxytime <- function(data, timevariable = "timepoint"){
   require(shiny)
   require(plotly)
@@ -709,6 +773,7 @@ ploxytime <- function(data, timevariable = "timepoint"){
 
 column_names <- (colnames(data))
 
+#I don't remember what this does:
 #to conditionally add column where timepoint is one
 #using this column breaks because of the code which removes frame title
 #df <- df %>% rowwise() %>%  mutate(blanktime = ifelse("blanktime" %in% colnames(df), blanktime, 1))
