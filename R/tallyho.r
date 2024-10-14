@@ -773,12 +773,6 @@ ploxytime <- function(data, timevariable = "timepoint"){
 
 column_names <- (colnames(data))
 
-#I don't remember what this does:
-#to conditionally add column where timepoint is one
-#using this column breaks because of the code which removes frame title
-#df <- df %>% rowwise() %>%  mutate(blanktime = ifelse("blanktime" %in% colnames(df), blanktime, 1))
-
-
 ui <- fluidPage(
   # Application title
   titlePanel("Ploxytime: plots xy time"),
