@@ -6,12 +6,13 @@ output:
     df_print: paged 
     code_folding: hide 
     code_download: true 
-  date: Thu 15 Feb 2024 
+date: Thu 17 Oct 2024
 ---
 
-## Intro
+### Intro
 
-**Tali**sman **H**elp for **O**pera 
+**Tali**sman **H**elp for **O**pera formerly Tallyho, now toccatr\
+A few other packages exist named Tallyho, so this was renamed to toccatr (from **Toccata**: noun, *a musical form for keyboard instruments*, *written in a free style that is characterized by full chords*, *rapid runs and high* [harmonies](https://www.revvity.com/hk-en/product/harmony-5-2-office-revvity-hh17000019))
 
 ```{r setup, warning=FALSE, message=FALSE}
 library(devtools)
@@ -20,18 +21,27 @@ library(roxygen2)
 library(tidyverse, quietly = TRUE) 
 library(janitor, quietly = TRUE) 
 library(plotly, quietly = TRUE)
-source("//10.0.3.251/Projects/Lab reference/Settings and Scientific Reference/slackrs/core_scripts/neuromuscular_function_1_6.r")
+
 
 ```
 
-Add clipfromxl to functions
-Need to add prismy and plate centering to functions and remove generic ones
-Work out if tubemap list can be added to a function
+### To do
 
-# Assuming your dataframe is called 'iris'
-Filtereing for platemap
-first_species <- iris[1, "Species"]  # Get the species of the first row
-filtered_df <- iris %>%
-  filter(Species == first_species)  # Select rows with the same species
-  select compound and row col, 
-  unique(0)
+-   Need to add prismy and plate centering to functions and remove generic ones
+
+-   Auto=filtering for platemap function so that there is only one plate: 
+
+`first_plate <- df[1, platename] # Get the platename of the first row`
+`filtered_df <- df %>% filter(platename == first_plate) # Select rows with the same plate`
+
+-   Adapt platemap and heatmap so they will take 384 as well as 96. Suggest adding qualifier in function parameters  
+
+-   Change requirements to individual packages rather than "tidyverse"  
+
+-   Make harm_check function which runs through identical import but returns the output as a table of each data file imported with platename, eval name, number of variables and number of obs  
+
+
+### Done
+
+(v0.9) Add clipfromxl to functions\
+(v1.0) Work out if tubemap list can be added to a function

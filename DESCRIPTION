@@ -8,3 +8,14 @@ Description: toccatr package by James Smith Talisman Therapeutics
     v1.7 - increased clipboard buffer size for clip2xl, added clipfromxl
     v1.6 - fixed incorrect evaluation numbers in harmread_ob when multiple sets are in same folder
 RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    forcats,
+    ggplot2,
+    janitor,
+    magrittr,
+    plotly,
+    readr,
+    shiny,
+    showtext,
+    tidyr

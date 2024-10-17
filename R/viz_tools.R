@@ -57,9 +57,12 @@ theme_js <- function() {
 #'
 #' A minimal ggplot theme.
 #' 
-#' Talisman colours not yet included.
+#' Talisman colours not yet included.  
+#' 
 #' Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
-#' should be set to Cairo PNG (or anything except "windows".
+#' should be set to Cairo PNG (or AGG, basically anything except "windows").  
+#' 
+#' This package requires font "Fira Sans" to be installed on your system - download from google fonts and restart R if not displaying correctly.  
 #'
 #' @examples
 #' ggplot(data = mtcars, aes(x = wt, y = mpg, colour = factor(cyl))) +
@@ -119,9 +122,10 @@ theme_ttf = function(){
 #' Select and colour points in a scatterplot
 #' 
 #' A shiny application to create scatter plots with selectable x and y axes for EDA
+#' 
 #' Points can be highlighted in different colours, and importantly these colours persist
-#' when the axes are changed, for example to visualisation where outliers in one metric
-#' appear in other metrics.
+#' when the axes are changed, for example to visualise where outliers in one metric
+#' appear in other metrics.  
 #' Starting X and Y variables can be preselected
 #' 
 #' @param data Dataframe to plot
@@ -232,7 +236,8 @@ majsty <- function(data, x_axis_variable = NULL, y_axis_variable = NULL){
 #' Plots mean with SD error bars in GGplot
 #' 
 #' A quick function to plot summary data barcharts with error bars calculated means.
-#' A time-saver rather since GGplot doesn't do this by default, but customisation options are limited.
+#' 
+#' A time-saver since GGplot doesn't do this by default, but customisation options are limited.  
 #' Default colours are based on London underground map. Recommended maximum number of bars is 16, absolute limit is 23.
 #' 
 #' @param df Dataframe to plot
