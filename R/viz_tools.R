@@ -152,7 +152,7 @@ majsty <- function(data, x_axis_variable = NULL, y_axis_variable = NULL){
   none_colourcode <- "grey70"
   
   draw_main_plot <- function(data, x_axis_variable, y_axis_variable, colourcodes){
-    ggplot2::ggplot2::ggplot(data = data[colourcodes == "none",], 
+    ggplot2::ggplot(data = data[colourcodes == "none",], 
            aes_string(x = x_axis_variable, y = y_axis_variable)) + 
       geom_point(colour = none_colourcode, size = 3, alpha = 0.6) + 
       geom_point(data = data[colourcodes == "red",], colour = red_colourcode, size = 3, alpha = 0.6) + 
