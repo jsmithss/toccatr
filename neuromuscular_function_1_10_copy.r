@@ -25,7 +25,7 @@ rescale_z <- function(x) {
 # hadley scaling allows defining floor and ceiling?
 # mtcars$limits <- squish(mtcars$hp, 100, 220)
 squish <- function(x, min, max) {
-  case_when(
+  dplyr::case_when(
     x < min ~ min,
     x > max ~ max,
     TRUE ~ x
@@ -40,12 +40,12 @@ squish <- function(x, min, max) {
 
 #a function which collects a dataframe  as clipboard contents. Do not use for massive dataframes!!
 clip2xl <- function(x,row.names=FALSE,col.names=TRUE,...) {
-  write.table(x,file = "clipboard-1024",sep="\t",row.names=row.names,col.names=col.names,...)
+  utils::write.table(x,file = "clipboard-1024",sep="\t",row.names=row.names,col.names=col.names,...)
 }
 
 #a function which collects a dataframe  as clipboard contents. Do not use for massive dataframes!!
 clip2csv <- function(x,row.names=FALSE,col.names=TRUE,...) {
-  write.table(x,file = "clipboard-1024",sep=",",row.names=row.names,col.names=col.names,...)
+  utils::write.table(x,file = "clipboard-1024",sep=",",row.names=row.names,col.names=col.names,...)
 }
 
 
@@ -53,8 +53,8 @@ clip2csv <- function(x,row.names=FALSE,col.names=TRUE,...) {
 clipfromxl <- function(){
   require(tidyverse)
   require(janitor)
-    cp <- read_tsv(file = clipboard())
-    cp <- clean_names(cp, replace=janitor:::mu_to_u)
+    cp <- readr::read_tsv(file = clipboard())
+    cp <- janitor::clean_names(cp, replace=janitor:::mu_to_u)
     return(cp)
 }
 
@@ -72,7 +72,7 @@ jiggle <- function(dfname) {
   # reorders dataframe so that chacter cols come first then numeric
   
   require(tidyverse)
-dfjigged <- dfname %>% relocate(where(is.numeric), .after = where(is.character))
+dfjigged <- dfname %>% dplyr::relocate(where(is.numeric), .after = where(is.character))
 return(dfjigged)
 }
 
@@ -140,16 +140,16 @@ hotplate <- function(dfname, metricname) {
 # only works for 96 well plate at present
 
   require(tidyverse)
-  dfname <- select(dfname, !matches("rowlet"))
+  dfname <- dplyr::select(dfname, !matches("rowlet"))
   convrow <- data.frame(rowlet = rep(LETTERS[1:8], 1), row = rep(1:8, 1))
   hotpldf <- merge(convrow,dfname,by= "row")
-  hotpldf$rowlf <- fct_rev(hotpldf$rowlet)
+  hotpldf$rowlf <- forcats::fct_rev(hotpldf$rowlet)
 
   ttitle <- deparse(substitute(metricname))
 
   require(ggplot2)
 
-  ggplot(hotpldf, aes(column, rowlf, fill={{metricname}})) + 
+  ggplot2::ggplot(hotpldf, aes(column, rowlf, fill={{metricname}})) + 
     geom_raster(show.legend = FALSE) +
     scale_fill_gradientn(colours=c("#440154FF", "#443A83FF", "#31688EFF", "#21908CFF", "#35B779FF", "#8FD744FF", "#FDE725FF")) +
     xlab("Column") +
@@ -174,17 +174,17 @@ platemap <- function(dfname, metricname = compound) {
   # only works for 96 well plate at present
   
   require(tidyverse)
-  dfname <- select(dfname, !matches("rowlet"))
+  dfname <- dplyr::select(dfname, !matches("rowlet"))
   convrow <- data.frame(rowlet = rep(LETTERS[1:8], 1), row = rep(1:8, 1))
-  plmapdf <- left_join(convrow,dfname,by= "row")
-  plmapdf$rowlf <- fct_rev(plmapdf$rowlet)
+  plmapdf <- dplyr::left_join(convrow,dfname,by= "row")
+  plmapdf$rowlf <- forcats::fct_rev(plmapdf$rowlet)
   
   ttitle <- deparse(substitute(metricname))
   
   require(ggplot2)
   #require(RColorBrewer)
   my_pal <- c("#179266","#b16e36","#e0cb17","#79e654","#4f4126","#26eaed","#8bcfb9","#8e6fa2","#990caf","#46a509","#11a8a2","#7c9688","#db91c2","#0bd58d","#b4098f","#3aae20","#d50a6a","#010e3b","#6749c4","#c32470","#7bbcee","#c206db","#1ff229","#2d153f","#dfd699","#5a1ec7","#e2d301","#bb90e0","#9a974d","#a5b0b0", "#324091", "#801155", "#c96e36", "#dffd12", "#df1112", "#4ee0aa")
-  ggplot(plmapdf, aes(column, rowlf, fill={{metricname}})) + 
+  ggplot2::ggplot(plmapdf, aes(column, rowlf, fill={{metricname}})) + 
     geom_tile(show.legend = TRUE) +
     scale_fill_manual(values = my_pal) +
     xlab("Column") +
@@ -219,38 +219,38 @@ harmread_pl <- function(pthname) {
   
   for (i in 1:length(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")))
     
-  {bc <- read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")[i], skip = 3, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets platename from metadata
-   ev <- read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")[i], skip = 5, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets evalname  
+  {bc <- readr::read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")[i], skip = 3, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets platename from metadata
+   ev <- readr::read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")[i], skip = 5, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets evalname  
    temp <- withr::with_options(list(rlib_name_repair_verbosity = "quiet"), 
-     read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")[i], skip = 8, col_names = TRUE, name_repair = "unique", show_col_types = FALSE) #reads plate results
+                               readr::read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern="PlateResults.txt")[i], skip = 8, col_names = TRUE, name_repair = "unique", show_col_types = FALSE) #reads plate results
    )
     temp$platename <- bc <- bc[[1,2]] #pastes platename into plate result
     temp$eval <- ev <- ev[[1,2]] #pastes evaluation name into plate result
     temp <- dplyr::select(temp, !starts_with("..")) # removes empty columns with autongenerated name
-    hinput<-bind_rows(hinput,temp) #add data from latest file to hinput
+    hinput <- dplyr::bind_rows(hinput,temp) #add data from latest file to hinput
     bartrack <- append(bartrack, bc) #adds platename to tracker sheet
   }
   
 
   bartrack <- as.data.frame(bartrack)
   dups <- bartrack %>% 
-    group_by(bartrack) %>% 
+    dplyr::group_by(bartrack) %>% 
     summarize(n = n()) %>% 
-    rename(platename=bartrack) %>% 
-    filter(n>1) %>% 
-    ungroup()
+    dplyr::rename(platename=bartrack) %>% 
+    dplyr::filter(n>1) %>% 
+    dplyr::ungroup()
   
-  hinput<- clean_names(hinput, replace = c("µ" = "u")) #use replace=janitor:::mu_to_u to fix micro symbol if using janitor 2.2.0 or later. 
+  hinput<- janitor::clean_names(hinput, replace = c("µ" = "u")) #use replace=janitor:::mu_to_u to fix micro symbol if using janitor 2.2.0 or later. 
   hinput[] <- lapply(hinput, function(x) (gsub("NaN", NA, x))) #replacing harmony NaN with R NA
-  hinput <- type.convert(hinput, as.is = TRUE) #finds integer or string columns and re-applies
+  hinput <- utils::type.convert(hinput, as.is = TRUE) #finds integer or string columns and re-applies
   
   rownum2text <- data.frame(row=c(1:8), rowlet=c("A","B","C","D","E","F","G","H"), stringsAsFactors = FALSE)
   colnum2text <- data.frame(column=c(1:12), colstring=c("01","02","03","04","05","06","07","08", "09", "10", "11", "12"), stringsAsFactors = FALSE)
-  hinput <- hinput %>% left_join(rownum2text, by = "row") %>% left_join(colnum2text, by = "column")
+  hinput <- hinput %>% dplyr::left_join(rownum2text, by = "row") %>% left_join(colnum2text, by = "column")
   
   hinput$metadata_well<-paste(hinput$rowlet, hinput$colstring, sep="")
   hinput$platename_well<-paste(hinput$platename,hinput$metadata_well,sep="_")
-  hinput <- hinput %>% mutate(eval = str_replace(eval, "Evaluation", ""))
+  hinput <- hinput %>% dplyr::mutate(eval = stringr::str_replace(eval, "Evaluation", ""))
   #rm(temp, colnum2text, rownum2text)
   print.data.frame(dups)
   return(hinput)
@@ -277,36 +277,36 @@ harmread_ob <- function(pthname, flename) {
   
   for (i in 1:length(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern = flename)))
     
-  {bc <- read_tsv (list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern = flename)[i], skip = 3, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets platename from metadata
-  ev <- read_tsv (list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern=flename)[i], skip = 5, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets evalname  
-  temp<-read_tsv (list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern = flename)[i], skip = 9, col_names = TRUE, name_repair = "unique", show_col_types = FALSE) #reads plate results
+  {bc <- readr::read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern = flename)[i], skip = 3, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets platename from metadata
+  ev <- readr::read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern=flename)[i], skip = 5, n_max = 1, col_names = FALSE, name_repair = "unique", show_col_types = FALSE) #gets evalname  
+  temp <- readr::read_tsv(list.files(path = pthname, full.names = TRUE, all.files = TRUE, recursive = TRUE, pattern = flename)[i], skip = 9, col_names = TRUE, name_repair = "unique", show_col_types = FALSE) #reads plate results
   temp$platename <- bc <- bc[[1,2]] #pastes platename into plate result
   temp$eval <- ev <- ev[[1,2]] #pastes evaluation name into plate result
   temp <- dplyr::select(temp, !starts_with("..")) # removes empty columns with autongenerated name
-  hinput<-bind_rows(hinput,temp) #add data from latest file to hinput
+  hinput <- dplyr::bind_rows(hinput,temp) #add data from latest file to hinput
   bartrack <- append(bartrack, bc) #adds platename to tracker sheet
   }
   
   
   bartrack <- as.data.frame(bartrack)
   dups <- bartrack %>% 
-    group_by(bartrack) %>% 
+    dplyr::group_by(bartrack) %>% 
     summarize(n = n()) %>% 
-    rename(platename=bartrack) %>% 
-    filter(n>1) %>% 
-    ungroup()
+    dplyr::rename(platename=bartrack) %>% 
+    dplyr::filter(n>1) %>% 
+    dplyr::ungroup()
   
-  hinput<- clean_names(hinput, replace = c("µ" = "u"))
+  hinput<- janitor::clean_names(hinput, replace = c("µ" = "u"))
   hinput[] <- lapply(hinput, function(x) (gsub("NaN", NA, x))) #replacing harmony NaN with R NA
-  hinput <- type.convert(hinput, as.is = TRUE) #finds integer or string columns and re-applies
+  hinput <- utils::type.convert(hinput, as.is = TRUE) #finds integer or string columns and re-applies
   
   rownum2text <- data.frame(row=c(1:8), rowlet=c("A","B","C","D","E","F","G","H"), stringsAsFactors = FALSE)
   colnum2text <- data.frame(column=c(1:12), colstring=c("01","02","03","04","05","06","07","08", "09", "10", "11", "12"), stringsAsFactors = FALSE)
-  hinput <- hinput %>% left_join(rownum2text, by = "row") %>% left_join(colnum2text, by = "column")
+  hinput <- hinput %>% dplyr::left_join(rownum2text, by = "row") %>% left_join(colnum2text, by = "column")
   
   hinput$metadata_well<-paste(hinput$rowlet, hinput$colstring, sep="")
   hinput$platename_well<-paste(hinput$platename,hinput$metadata_well,sep="_")
-  hinput <- hinput %>% mutate(eval = str_replace(eval, "Evaluation", ""))
+  hinput <- hinput %>% dplyr::mutate(eval = stringr::str_replace(eval, "Evaluation", ""))
   #rm(temp, colnum2text, rownum2text)
   print.data.frame(dups)
   return(hinput)
@@ -337,7 +337,7 @@ majsty <- function(data, x_axis_variable = NULL, y_axis_variable = NULL){
   none_colourcode <- "grey70"
   
   draw_main_plot <- function(data, x_axis_variable, y_axis_variable, colourcodes){
-    ggplot(data = data[colourcodes == "none",], 
+    ggplot2::ggplot(data = data[colourcodes == "none",], 
            aes_string(x = x_axis_variable, y = y_axis_variable)) + 
       geom_point(colour = none_colourcode, size = 3, alpha = 0.6) + 
       geom_point(data = data[colourcodes == "red",], colour = red_colourcode, size = 3, alpha = 0.6) + 
@@ -419,12 +419,12 @@ barchartr <- function(dfname, varname, groupnames){
   require(tidyverse)
   xvarname <- deparse(substitute(varname))
   
-  data_sum <- dfname %>% group_by({{groupnames}}) %>% summarise(mean = mean({{varname}}, na.rm=TRUE), sd = sd({{varname}}, na.rm=TRUE)) %>% ungroup()
+  data_sum <- dfname %>% dplyr::group_by({{groupnames}}) %>% dplyr::summarise(mean = mean({{varname}}, na.rm=TRUE), sd = sd({{varname}}, na.rm=TRUE)) %>% dplyr::ungroup()
   
-  data_sum <- rename(data_sum, {{xvarname}} := mean)
+  data_sum <- dplyr::rename(data_sum, {{xvarname}} := mean)
   tubemap <- c("#E32017", "#FFD300", "#00782A", "#F3A9BB", "#868F98", "#9B0056", "#000000", "#003688", "#0098D4", "#95CDBA", "#00A4A7", "#EE7C0E", "#84B817", "#E21836", "#7156A5", "#B36305", "grey33", "grey44", "grey55", "grey66", "grey77", "grey88", "grey92" )
   
-meanbarchart <- ggplot(data_sum) +
+meanbarchart <- ggplot2::ggplot(data_sum) +
   aes(
     x = {{groupnames}},
     y = {{varname}},
@@ -500,7 +500,7 @@ column_names <- (colnames(data))
 
 #to conditionally add column where timepoint is one
 #using this column breaks because of the code which removes frame title
-#df <- df %>% rowwise() %>%  mutate(blanktime = ifelse("blanktime" %in% colnames(df), blanktime, 1))
+#df <- df %>% rowwise() %>%  dplyr::mutate(blanktime = ifelse("blanktime" %in% colnames(df), blanktime, 1))
 
 
 ui <- fluidPage(

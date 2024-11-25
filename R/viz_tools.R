@@ -72,7 +72,7 @@ theme_js <- function() {
 #' @export
 theme_tt = function(){
   require(showtext)
-  font_add_google("Fira Sans", "Fira Sans")
+  sysfonts::font_add_google("Fira Sans", "Fira Sans")
   theme_minimal() +
     theme(
       legend.position = "bottom",
@@ -152,7 +152,7 @@ majsty <- function(data, x_axis_variable = NULL, y_axis_variable = NULL){
   none_colourcode <- "grey70"
   
   draw_main_plot <- function(data, x_axis_variable, y_axis_variable, colourcodes){
-    ggplot(data = data[colourcodes == "none",], 
+    ggplot2::ggplot2::ggplot(data = data[colourcodes == "none",], 
            aes_string(x = x_axis_variable, y = y_axis_variable)) + 
       geom_point(colour = none_colourcode, size = 3, alpha = 0.6) + 
       geom_point(data = data[colourcodes == "red",], colour = red_colourcode, size = 3, alpha = 0.6) + 
@@ -252,12 +252,12 @@ barchartr <- function(dfname, varname, groupnames){
   require(tidyverse)
   xvarname <- deparse(substitute(varname))
   
-  data_sum <- dfname %>% group_by({{groupnames}}) %>% summarise(mean = mean({{varname}}, na.rm=TRUE), sd = sd({{varname}}, na.rm=TRUE)) %>% ungroup()
+  data_sum <- dfname %>% dplyr::group_by({{groupnames}}) %>% dplyr::summarise(mean = mean({{varname}}, na.rm=TRUE), sd = sd({{varname}}, na.rm=TRUE)) %>% dplyr::ungroup()
   
-  data_sum <- rename(data_sum, {{xvarname}} := mean)
+  data_sum <- dplyr::rename(data_sum, {{xvarname}} := mean)
   tubemap <- c("#E32017", "#FFD300", "#00782A", "#F3A9BB", "#868F98", "#9B0056", "#000000", "#003688", "#0098D4", "#95CDBA", "#00A4A7", "#EE7C0E", "#84B817", "#E21836", "#7156A5", "#B36305", "grey33", "grey44", "grey55", "grey66", "grey77", "grey88", "grey92" )
   
-  meanbarchart <- ggplot(data_sum) +
+  meanbarchart <- ggplot2::ggplot(data_sum) +
     aes(
       x = {{groupnames}},
       y = {{varname}},

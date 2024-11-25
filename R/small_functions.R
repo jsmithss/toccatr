@@ -62,7 +62,7 @@ rescale_z <- function(x) {
 #' @export
 squish <- function(x, min, max) {
   require(tidyverse)
-  case_when(
+  dplyr::case_when(
     x < min ~ min,
     x > max ~ max,
     TRUE ~ x
@@ -97,7 +97,7 @@ squish <- function(x, min, max) {
 #' clip2xl(iris)
 #' @export
 clip2xl <- function(x,row.names=FALSE,col.names=TRUE,...) {
-  write.table(x,file = "clipboard-1024",sep="\t",row.names=row.names,col.names=col.names,...)
+  utils::write.table(x,file = "clipboard-1024",sep="\t",row.names=row.names,col.names=col.names,...)
 }
 
 
@@ -117,7 +117,7 @@ clip2xl <- function(x,row.names=FALSE,col.names=TRUE,...) {
 #' clip2csv(mtcars)
 #' @export
 clip2csv <- function(x,row.names=FALSE,col.names=TRUE,...) {
-  write.table(x,file = "clipboard-1024",sep=",",row.names=row.names,col.names=col.names,...)
+  utils::write.table(x,file = "clipboard-1024",sep=",",row.names=row.names,col.names=col.names,...)
 }
 
 
@@ -135,8 +135,8 @@ clip2csv <- function(x,row.names=FALSE,col.names=TRUE,...) {
 clipfromxl <- function(){
   require(tidyverse)
   require(janitor)
-  cp <- read_tsv(file = clipboard())
-  cp <- clean_names(cp, replace=janitor:::mu_to_u)
+  cp <- readr::read_tsv(file = clipboard())
+  cp <- janitor::clean_names(cp, replace=janitor:::mu_to_u)
   return(cp)
 }
 
@@ -156,7 +156,7 @@ clipfromxl <- function(){
 #' @export
 jiggle <- function(dfname) {
   require(tidyverse)
-  dfjigged <- dfname %>% relocate(where(is.numeric), .after = where(is.character))
+  dfjigged <- dfname %>% dplyr::relocate(where(is.numeric), .after = where(is.character))
   return(dfjigged)
   #Untested base-r equivalent
   #jiggle <- function(dfname) {

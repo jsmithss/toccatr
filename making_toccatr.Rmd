@@ -32,13 +32,19 @@ library(plotly, quietly = TRUE)
 -   Auto=filtering for platemap function so that there is only one plate: 
 
 `first_plate <- df[1, platename] # Get the platename of the first row`
-`filtered_df <- df %>% filter(platename == first_plate) # Select rows with the same plate`
+`filtered_df <- df %>% dplyr::filter(platename == first_plate) # Select rows with the same plate`
 
 -   Adapt platemap and heatmap so they will take 384 as well as 96. Suggest adding qualifier in function parameters  
 
 -   Change requirements to individual packages rather than "tidyverse"  
 
 -   Make harm_check function which runs through identical import but returns the output as a table of each data file imported with platename, eval name, number of variables and number of obs  
+
+-   Explicitly call functions from other packages e.g. dplyr::bind_rows  
+
+-   Fix popup help for ploxy  
+
+-   Add a [custom dataset](https://www.r-bloggers.com/2024/10/beyond-functions-how-to-enrich-an-r-package-with-data/) with compounds and likely data, also a timecourse  
 
 
 ### Done
