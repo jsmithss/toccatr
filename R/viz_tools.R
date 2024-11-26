@@ -137,7 +137,7 @@ theme_ttf = function(){
 #' majsty(user_df, "no_of_cells", "stain_intensity")
 #' @export
 majsty <- function(data, x_axis_variable = NULL, y_axis_variable = NULL){
-  require(shiny)
+  require(shiny) #change to @import
   require(ggplot2)
   require(tidyverse)  
   

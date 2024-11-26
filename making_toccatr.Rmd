@@ -22,6 +22,11 @@ library(tidyverse, quietly = TRUE)
 library(janitor, quietly = TRUE) 
 library(plotly, quietly = TRUE)
 
+# If this is the first time running toccatr, the following is needed to install it
+# install.packages("devtools")
+# library(devtools)
+# install_github("jsmithss/toccatr")
+
 
 ```
 
