@@ -51,7 +51,7 @@ rescale_z <- function(x) {
 
 #' via Hadley Wickham/Twitter
 #' Any values below minimum/ above maximum will be replaced with min/max value respectively
-#' #' Example usage: user_df$new <- squish(user_df$colname)
+#' Example usage: user_df$new <- squish(user_df$colname)
 #' 
 #' @param x Numeric variable you wish to limit
 #' @param min Lower limit for variable

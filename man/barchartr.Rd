@@ -21,7 +21,8 @@ Plots mean with SD error bars in GGplot
 }
 \details{
 A quick function to plot summary data barcharts with error bars calculated means.
-A time-saver rather since GGplot doesn't do this by default, but customisation options are limited.
+
+A time-saver since GGplot doesn't do this by default, but customisation options are limited.  
 Default colours are based on London underground map. Recommended maximum number of bars is 16, absolute limit is 23.
 }
 \examples{

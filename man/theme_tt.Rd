@@ -10,9 +10,12 @@ theme_tt()
 A minimal ggplot theme.
 }
 \details{
-Talisman colours not yet included.
+Talisman colours not yet included.  
+
 Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
-should be set to Cairo PNG (or anything except "windows".
+should be set to Cairo PNG (or AGG, basically anything except "windows").  
+
+This package requires font "Fira Sans" to be installed on your system - download from google fonts and restart R if not displaying correctly.
 }
 \examples{
 ggplot(data = mtcars, aes(x = wt, y = mpg, colour = factor(cyl))) +

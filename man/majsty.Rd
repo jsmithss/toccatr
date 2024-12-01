@@ -21,9 +21,10 @@ Select and colour points in a scatterplot
 }
 \details{
 A shiny application to create scatter plots with selectable x and y axes for EDA
+
 Points can be highlighted in different colours, and importantly these colours persist
-when the axes are changed, for example to visualisation where outliers in one metric
-appear in other metrics.
+when the axes are changed, for example to visualise where outliers in one metric
+appear in other metrics.  
 Starting X and Y variables can be preselected
 }
 \examples{

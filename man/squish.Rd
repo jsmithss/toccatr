@@ -20,7 +20,7 @@ A new variable confined by upper and lower bounds
 Specifies lower and upper bounds of a variable to defined values
 via Hadley Wickham/Twitter
 Any values below minimum/ above maximum will be replaced with min/max value respectively
-#' Example usage: user_df$new <- squish(user_df$colname)
+Example usage: user_df$new <- squish(user_df$colname)
 }
 \examples{
 mtcars$limits <- squish(mtcars$hp, 100, 220)
