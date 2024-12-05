@@ -73,6 +73,8 @@ theme_js <- function() {
 theme_tt = function(){
   require(showtext)
   sysfonts::font_add_google("Fira Sans", "Fira Sans")
+  showtext_auto()
+  showtext::showtext_opts(dpi = 200)
   theme_minimal() +
     theme(
       legend.position = "bottom",
@@ -87,6 +89,7 @@ theme_tt = function(){
       legend.margin = margin(t = 0)
     )
 }
+
 
 
 #' Talisman Theme for Facets
