@@ -72,15 +72,15 @@ theme_js <- function() {
 #'   theme_tt()
 #' @export
 theme_tt = function(){
-  require(showtext)
-  sysfonts::font_add_google("Fira Sans", "Fira sans")
+  #require(showtext)
+ # sysfonts::font_add_google("Fira Sans", "Fira sans")
   theme_minimal() +
     theme(
       legend.position = "bottom",
       axis.line = element_line(colour = "grey50"),
       axis.ticks = element_line(colour = "grey70", linewidth = 0.2),
       panel.grid = element_blank(),
-      text = element_text(family = "Fira sans"),
+      text = element_text(family = "Calibri"),
       plot.title = element_text(
         hjust = 0.5, size = 16, margin = margin(b = 30)
       ),
