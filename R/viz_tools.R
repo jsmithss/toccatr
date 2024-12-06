@@ -322,7 +322,6 @@ ploxy <- function(data) {
     ))
   )
   
-  # Make plotly scatter plot
   server <- function(input, output, session) {
     output$myPlot <- renderPlotly({
       req(input$yvariable)
@@ -337,17 +336,21 @@ ploxy <- function(data) {
         alpha = 0.6,
         hoverinfo = "text"
       ) %>%
+        hide_colorbar() %>%
         layout(
-          xaxis = list(title = " "),
-          yaxis = list(title = " "),
-          legend = list(title = list(text = " "))
+          xaxis = list(title = input$xvariable),
+          yaxis = list(title = input$yvariable),
+          legend = list(title = list(text = "Legend"))
         )
+      
     })
   }
   
   shinyApp(ui, server)
   
 }
+
+
 
 
 
@@ -396,8 +399,23 @@ ploxytime <- function(data, timevariable = "timepoint"){
   server <- function(input, output, session) {
     output$myPlot <- renderPlotly({
       req(input$yvariable)
-      plot_ly(data = data, x = ~get(input$xvariable), y = ~get(input$yvariable), color =~get(input$colourvariable), text = ~get(input$textvariable), type = "scatter", mode = "markers", alpha = 0.6, frame = ~get(input$timevariable), hoverinfo = "text") %>%
-        animation_opts(transition = 0) %>%  layout(xaxis = list(title = " "), yaxis = list(title = " "), legend=list(title= list(text = " "))) %>% animation_slider(currentvalue = list(prefix = ""))
+      plot_ly(data = data,
+              x = ~get(input$xvariable), 
+              y = ~get(input$yvariable), 
+              color =~get(input$colourvariable), 
+              text = ~get(input$textvariable), 
+              type = "scatter", 
+              mode = "markers", 
+              alpha = 0.6, 
+              frame = ~get(input$timevariable), 
+              hoverinfo = "text") %>%
+        animation_opts(transition = 0) %>%  
+        hide_colorbar() %>%
+        layout(xaxis = list(title = " "), 
+               yaxis = list(title = " "), 
+               legend = list(title = list(text = "Legend"))
+               ) %>% 
+        animation_slider(currentvalue = list(prefix = ""))
     })
   }
   

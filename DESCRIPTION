@@ -4,6 +4,7 @@ Title: Help functions for use with Opera and HCS data
 Version: 1.9
 Description: toccatr package by James Smith Talisman Therapeutics
     Change notes 
+    v1.10 - Changed ploxy and ploxytime legend title display
     v1.9 - Package dependencies added; coselectr and prism tools added
     v1.8 - Incorporated into a package, renamed for ease of calling
     v1.7 - increased clipboard buffer size for clip2xl, added clipfromxl

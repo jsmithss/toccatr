@@ -14,6 +14,7 @@ Talisman colours not yet included.
 
 Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
 should be set to Cairo PNG (or AGG, basically anything except "windows").  
+If this errors when knitting, add library(extrafont) to Rmd
 
 This package requires font "Fira Sans" to be installed on your system - download from google fonts and restart R if not displaying correctly.
 }
