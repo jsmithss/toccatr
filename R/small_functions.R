@@ -167,3 +167,30 @@ jiggle <- function(dfname) {
   #}
 }
 
+
+#' Unique time saver
+#' 
+#' A shortcut for the unique function
+#' 
+#' When working with a new data set, the unique() function is often used
+#' multiple times to get a short list of info within the data such as 
+#' treatment groups or plate barcodes. This is a function for the lazy typist
+#' to reduce unique(df$my_var) to u(my_var)
+#' 
+#' Eight keystrokes saved every time!
+#' 
+#' If your dataframe is not df, there is an option to specify dfname
+#' 
+#' @param my_var Variable to extract unique values
+#' @param dfname Dataframe
+#' @return Re-ordered dataframe
+#' @examples
+#' df <- iris
+#' u(Species)
+#' u(cyl, mtcars)
+#' @export
+u <- function(my_var, dfname = df) {
+  dfname %>% 
+    distinct({{my_var}}) %>% 
+    pull()
+}

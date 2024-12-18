@@ -1,5 +1,5 @@
 ---
-title: "Tallyho Package development"
+title: "Toccatr Package development"
 author: "James Smith, Talisman Therapeutics" 
 output: 
   html_document: 
@@ -11,7 +11,7 @@ output:
 
 ## Intro
 
-**Tali**sman **H**elp for **O**pera 
+Toccatr to do list
 
 ```{r setup, warning=FALSE, message=FALSE}
 library(devtools)
@@ -24,9 +24,11 @@ source("//10.0.3.251/Projects/Lab reference/Settings and Scientific Reference/sl
 
 ```
 
-Add clipfromxl to functions
-Need to add prismy and plate centering to functions and remove generic ones
-Work out if tubemap list can be added to a function
+
+Need to add prismy_time for timecourse data and prismy_group for grouped format prism data
+
+Create function for pairing multiple evaluations from same dataset side by side  
+Either use pivot wider or: split, rename variables by eval (use index not actual eval num), join by platename_well
 
 # Assuming your dataframe is called 'iris'
 Filtereing for platemap
@@ -35,3 +37,6 @@ filtered_df <- iris %>%
   filter(Species == first_species)  # Select rows with the same species
   select compound and row col, 
   unique(0)
+
+Old name was Tallyho ( **Tali**sman **H**elp for **O**pera )
+
