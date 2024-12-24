@@ -30,7 +30,7 @@ Need to add prismy_time for timecourse data and prismy_group for grouped format 
 Create function for pairing multiple evaluations from same dataset side by side  
 Either use pivot wider or: split, rename variables by eval (use index not actual eval num), join by platename_well
 
-# Assuming your dataframe is called 'iris'
+#### Assuming your dataframe is called 'iris'
 Filtereing for platemap
 first_species <- iris[1, "Species"]  # Get the species of the first row
 filtered_df <- iris %>%
@@ -38,5 +38,42 @@ filtered_df <- iris %>%
   select compound and row col, 
   unique(0)
 
+####  Combine multiple evaluations for one plate
+
+dfcols <- df %>% select(-eval) %>% colnames() 
+df <- df %>% 
+  #mutate(eval_index = match(eval, unique(eval))) %>% 
+  pivot_wider(
+    names_from = eval_index, 
+    values_from = dfcols
+  )
+ #colnames(df) <- str_replace(colnames(df), "_1", "")
+# removes columns which have identical values  - will also remove nas
+df2 <- df2[!duplicated(as.list(df2))]
+
+
+
+#### Combine two rows
+
+library(dplyr)
+
+  Create the dataframe
+df <- tribble(
+  ~a, ~b, ~c, ~d,
+  "apple", 1.5, NA, 1,
+  "banana", 3, NA, 2,
+  "orange", 4, NA, 3,
+  "apple", NA, 6, 4,
+  "banana", NA, 7, 4,
+  "orange", NA, 8, 5
+)
+
+  Group by column 'a' and remove NAs for each group
+  col_list <- c("b", "c")
+df_combined <- df %>%
+  group_by(a) %>%
+  summarise(across(all_of(collist), ~first(na.omit(.))))
+  
+  
 Old name was Tallyho ( **Tali**sman **H**elp for **O**pera )
 

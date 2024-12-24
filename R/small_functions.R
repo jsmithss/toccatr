@@ -191,6 +191,6 @@ jiggle <- function(dfname) {
 #' @export
 u <- function(my_var, dfname = df) {
   dfname %>% 
-    distinct({{my_var}}) %>% 
-    pull()
+    dplyr::distinct({{my_var}}) %>% 
+    dplyr::pull()
 }
