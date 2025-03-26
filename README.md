@@ -24,7 +24,6 @@ toccatr is not on CRAN. To install the latest version use:
 ``` r
 install.packages("devtools")
 library(devtools)
-install_github("jsmithss/toccatr")
 ```
 
 ## Using toccatr
@@ -51,7 +50,9 @@ frames
 \* `well2row()` Creates numeric row and column references from Well
 name  
 \* `squish()` Limit upper and lower values of variable  
-\* `%nin%()` Select items Not in a list
+\* `%nin%()` Select items Not in a list  
+\* `u()` List unique items in a variable in df dataframe  
+\* `loggy()` Log transform all numeric variables
 
 **Visualisation**  
 \* `platemap()` 96 well plate layouts by compound or treatment  
