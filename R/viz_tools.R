@@ -28,27 +28,19 @@ tubemap <- c("#E32017", "#FFD300", "#00782A", "#F3A9BB", "#868F98", "#9B0056",
 #'   ggtitle("JS theme") +
 #'   theme_js()
 #' @export
-theme_js <- function() { 
-  theme_classic() + 
+theme_js <- function(){
+  theme_minimal() +
     theme(
-      text = element_text(family = "serif"),
-      plot.title = element_text(face = "bold", size = 13, hjust = 0.5),
-      plot.subtitle = element_text(hjust = 0.5),
-      axis.ticks = element_line(colour = "grey70", linewidth = 0.2),
-      panel.grid.major.x = element_blank(),
-      panel.grid.major.y = element_line(colour = "grey95", linewidth = 0.2),
-      panel.grid.minor = element_blank(),
-      strip.background = element_rect(colour = "grey20", fill = "grey20"),
-      strip.text = element_text(colour = "white"),
-      #  panel.border = element_rect(colour = "black", fill = NA), #add back for facet
-      panel.spacing.x = unit(1,"lines"),
-      strip.placement = "outside",
-      legend.title = element_text(face="italic"),
       legend.position = "bottom",
-      legend.margin = margin(0, 0, 0, 0, "pt"),
-      legend.box.margin = margin(0, 0, 0, 0, "pt"),
-      legend.spacing = margin(0, 0, 0, 0, "pt"),
-      legend.key = element_rect(colour = NA)
+      axis.line = element_line(colour = "grey50"),
+      axis.ticks = element_line(colour = "grey70", linewidth = 0.2),
+      panel.grid = element_blank(),
+      text = element_text(family = "serif"),
+      plot.title = element_text(
+        hjust = 0.5, size = 16, margin = margin(b = 30)
+      ),
+      plot.background = element_rect(fill = "#ffffff", colour = "#ffffff"),
+      legend.margin = margin(t = 0)
     )
 }
 
@@ -59,11 +51,8 @@ theme_js <- function() {
 #' 
 #' Talisman colours not yet included.  
 #' 
-#' Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
-#' should be set to Cairo PNG (or AGG, basically anything except "windows").  
-#' If this errors when knitting, add library(extrafont) to Rmd
+#' A minimal theme for ggplot with legend at the bottom and no gridlines.  
 #' 
-#' This package requires font "Fira Sans" to be installed on your system - download from google fonts and restart R if not displaying correctly.  
 #'
 #' @examples
 #' ggplot(data = mtcars, aes(x = wt, y = mpg, colour = factor(cyl))) +
@@ -72,8 +61,6 @@ theme_js <- function() {
 #'   theme_tt()
 #' @export
 theme_tt = function(){
-  #require(showtext)
- # sysfonts::font_add_google("Fira Sans", "Fira sans")
   theme_minimal() +
     theme(
       legend.position = "bottom",

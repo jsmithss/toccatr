@@ -155,6 +155,10 @@ clipfromxl <- function(){
 #' iris <- jiggle(iris)
 #' @export
 jiggle <- function(dfname) {
+  # Input validation
+  if (!is.data.frame(data)) {
+    stop("Input must be a data frame")
+  }
   require(tidyverse)
   dfjigged <- dfname %>% dplyr::relocate(where(is.numeric), .after = where(is.character))
   return(dfjigged)
@@ -194,3 +198,6 @@ u <- function(my_var, dfname = df) {
     dplyr::distinct({{my_var}}) %>% 
     dplyr::pull()
 }
+
+
+

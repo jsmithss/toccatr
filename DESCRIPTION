@@ -1,9 +1,10 @@
 Package: toccatr
 Type: Package
 Title: Help functions for use with Opera and HCS data
-Version: 1.11
+Version: 1.12
 Description: toccatr package by James Smith Talisman Therapeutics
     Change notes 
+    v1.12 - Loggy function
     v1.11 - Added U function
     v1.10 - Changed ploxy and ploxytime legend title display
     v1.9 - Package dependencies added; coselectr and prism tools added
@@ -22,3 +23,4 @@ Imports:
     shiny,
     showtext,
     tidyr
+Encoding: UTF-8

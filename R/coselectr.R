@@ -20,7 +20,6 @@ coselectr <- function(df) {
     stop("shiny package is required. Please install it with install.packages('shiny')")
   }
   require(tidyverse)
-  require(dt)
   require(shiny)
   
   # UI Definition
