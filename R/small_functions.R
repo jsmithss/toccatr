@@ -153,10 +153,11 @@ clipfromxl <- function(){
 #' @return Re-ordered dataframe
 #' @examples
 #' iris <- jiggle(iris)
+#' @import dplyr
 #' @export
 jiggle <- function(dfname) {
   # Input validation
-  if (!is.data.frame(data)) {
+  if (!is.data.frame(dfname)) {
     stop("Input must be a data frame")
   }
   require(tidyverse)
