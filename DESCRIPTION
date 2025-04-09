@@ -11,6 +11,9 @@ Description: toccatr package by James Smith Talisman Therapeutics
     v1.8 - Incorporated into a package, renamed for ease of calling
     v1.7 - increased clipboard buffer size for clip2xl, added clipfromxl
     v1.6 - fixed incorrect evaluation numbers in harmread_ob when multiple sets are in same folder
+License: GPL-3
+Author: James Smith [aut, cre]
+Maintainer: James Smith <james.smith@talisman-therapeutics.com>
 RoxygenNote: 7.3.2
 Imports: 
     dplyr,
