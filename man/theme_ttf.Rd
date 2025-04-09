@@ -10,9 +10,8 @@ theme_ttf()
 A minimal ggplot theme for faceted charts.
 }
 \details{
-Talisman colours not yet included.
-Showtext package needs to be installed and Rstudio Global Options...General...Graphics...Backend... 
-should be set to Cairo PNG (or anything except "windows".
+Rstudio Global Options...General...Graphics...Backend... 
+       should be set to Cairo PNG (or anything except "windows").
 }
 \examples{
 ggplot(data = mtcars, aes(x = wt, y = mpg, colour = factor(cyl))) +

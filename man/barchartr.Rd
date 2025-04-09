@@ -4,28 +4,39 @@
 \alias{barchartr}
 \title{Quick summary barcharts}
 \usage{
-barchartr(dfname, varname, groupnames)
+barchartr(
+  dfname,
+  varname,
+  groupnames,
+  color_palette = tubemap,
+  error_bar = TRUE
+)
 }
 \arguments{
+\item{dfname}{Dataframe to plot}
+
 \item{varname}{Variable to plot on barchart}
 
 \item{groupnames}{Variable which lists groups which will become bar labels}
 
-\item{df}{Dataframe to plot}
+\item{color_palette}{Color palette to use (defaults to tubemap)}
+
+\item{error_bar}{Logical. If TRUE, show error bars (default)}
 }
 \value{
 ggplot object
 }
 \description{
-Plots mean with SD error bars in GGplot
+Plots mean with SD error bars in ggplot
 }
 \details{
-A quick function to plot summary data barcharts with error bars calculated means.
+A quick function to plot summary data barcharts with error bars using calculated means.
 
-A time-saver since GGplot doesn't do this by default, but customisation options are limited.  
-Default colours are based on London underground map. Recommended maximum number of bars is 16, absolute limit is 23.
+A time-saver since ggplot doesn't do this by default, but customisation options are limited.  
+Default colours are based on London underground map. Recommended maximum number of bars is 16.
 }
 \examples{
 barchartr(df, number_of_cells, compound)
 bc <- barchartr(df, GFP_pos_cells, treatment)
+bc <- barchartr(df, GFP_pos_cells, treatment, color_palette = cbfriendly)
 }

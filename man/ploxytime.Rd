@@ -8,19 +8,21 @@ ploxytime(data, timevariable = "timepoint")
 }
 \arguments{
 \item{data}{Dataframe to plot}
+
+\item{timevariable}{Name of the column to use for animation frames (default: "timepoint")}
 }
 \value{
-Interactive scatterplot
+Interactive scatterplot with animation
 }
 \description{
 Shiny and plotly combine for timecourse interaction
 }
 \details{
-A shiny application to create scatter plots with selectable x and y axes for EDA
-Data must have a variable called timepoint
+A shiny application to create scatter plots with selectable x and y axes for EDA.
 X and Y variables can be interactively changed, along with
-Plotly actions such as zoom, pan and save
+Plotly actions such as zoom, pan and save.
 }
 \examples{
-ploxy(df)
+ploxytime(df)
+ploxytime(df, "date")
 }

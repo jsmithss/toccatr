@@ -4,7 +4,12 @@
 \alias{majsty}
 \title{Majsty interactive scatter plots}
 \usage{
-majsty(data, x_axis_variable = NULL, y_axis_variable = NULL)
+majsty(
+  data,
+  x_axis_variable = NULL,
+  y_axis_variable = NULL,
+  color_scheme = NULL
+)
 }
 \arguments{
 \item{data}{Dataframe to plot}
@@ -12,9 +17,11 @@ majsty(data, x_axis_variable = NULL, y_axis_variable = NULL)
 \item{x_axis_variable}{Data to plot on x axis (optional, must be in quotes)}
 
 \item{y_axis_variable}{Data to plot on y axis (optional, must be in quotes)}
+
+\item{color_scheme}{Vector of color codes to use for point colors}
 }
 \value{
-Interactive scatterplot
+Interactive scatterplot application
 }
 \description{
 Select and colour points in a scatterplot
@@ -24,10 +31,10 @@ A shiny application to create scatter plots with selectable x and y axes for EDA
 
 Points can be highlighted in different colours, and importantly these colours persist
 when the axes are changed, for example to visualise where outliers in one metric
-appear in other metrics.  
-Starting X and Y variables can be preselected
+appear in other metrics. Starting X and Y variables can be preselected
 }
 \examples{
 majsty(df)
 majsty(user_df, "no_of_cells", "stain_intensity")
+majsty(df, color_scheme = cbfriendly) # Use color blind friendly palette
 }

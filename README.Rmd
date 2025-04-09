@@ -77,6 +77,8 @@ A full lit of functions is found below:
 * `theme_js()` James ggplot theme  
 * `theme_tt()` Clean ggplot theme  
 * `theme_ttf()` Clean ggplot theme for faceted data  
+* `theme_tt2()` Clean ggplot theme using Fira Sans font  
+* `theme_tt2f()` Clean ggplot theme using Fira Sans font, for faceted data  
 * `tubemap()` List of colours based on London Tube map  
 
 Toccatr is very much a work in progress, suggestions and contributions welcome.  

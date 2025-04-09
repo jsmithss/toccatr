@@ -1,0 +1,137 @@
+---
+title: "Test fonts"
+subtitle: "With Fira Sans"
+author: "James Smith, Talisman Therapeutics" 
+execute:
+  echo: false
+knitr:
+  opts_chunk:
+    dev: ragg_png
+format: 
+  html: 
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+    df-print: kable
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+date: "2025-03-13"
+---
+## Intro
+
+
+
+
+```{r}
+#| label: firststep
+#| warning: false
+
+
+
+library(pacman)
+p_load(tidyverse, janitor, knitr)
+
+
+
+today <- format(Sys.Date(), format="%Y-%m-%d")
+pth <- getwd()
+pthbr <- str_replace_all(pth, "\\/", "\\/\n")
+cat(paste("Working directory is:", pthbr, sep = "\n"))
+```
+::: {.content-hidden when-format="pdf"}
+
+
+
+
+
+
+<br>
+<br>
+
+
+Tidying the data gives the following table stucture:  
+
+:::
+
+
+
+
+
+
+
+
+
+### Intensity plots
+
+```{r}
+#| label: inten_plot
+
+
+
+theme_tt2 = function(){
+  require(systemfonts)
+  theme_minimal() +
+    theme(
+      legend.position = "bottom",
+      axis.line = element_line(colour = "grey50"),
+      axis.ticks = element_line(colour = "grey70", linewidth = 0.2),
+      panel.grid = element_blank(),
+      text = element_text(family = "Fira sans"),
+      plot.title = element_text(
+        hjust = 0.5, size = 16, margin = margin(b = 30)
+      ),
+      plot.background = element_rect(fill = "#ffffff", colour = "#ffffff"),
+      legend.margin = margin(t = 0)
+    )
+}
+
+
+
+
+ggplot(data = mtcars, aes(x = disp, y= mpg, color = factor(cyl), size = wt)) +
+  geom_point() +
+  scale_color_manual(values = tubemap, labels = c("four", "six", "EIGHT!")) + #point colours and label names
+  labs(title = "My scatter", subtitle = "My subtitle", caption = "This is my data source", colour = "Cylz", size = "Weight\n(1000 lbs)", x = "Engine size", y = "") + # changes labels for various chart components, removes y axis label completely
+  scale_x_continuous(expand = expansion(mult = c(0, 0.1)), limits = c(0, 500))  + #set precise axis limits with no buffer
+  theme_tt2()
+
+
+
+
+```
+
+
+
+
+::: {.content-hidden when-format="pdf"}
+
+
+
+
+
+
+
+
+```{r}
+#| label: session_info
+
+# Write session information to a text file
+
+pkg_info <- installed.packages()[,c("Package", "Version")]
+
+sink("rsession_info.txt")
+print("**SESSION**")
+sessionInfo()
+print("---------------------------------------------")
+print("**SYSTEM**")
+Sys.info()
+print("---------------------------------------------")
+print("**INSTALLED PACKAGES**")
+pkg_info
+sink()
+```
+
+
+:::

@@ -12,6 +12,8 @@
 #' forprism <- prismy_col(df, number_of_cells, compound)
 #' xx <- starwars %>% filter(!is.na(species) & !is.na(height))
 #' prism_out <- prismy_col(xx, height, species)
+#' @import dplyr
+#' @import tidyr
 #' @export
 prismy_col <- function(ddframe, met4prism, grp){
   

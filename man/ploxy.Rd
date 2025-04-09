@@ -16,9 +16,9 @@ Interactive scatterplot
 Shiny and plotly combine for scatterplot interaction
 }
 \details{
-A shiny application to create scatter plots with selectable x and y axes for EDA
+A shiny application to create scatter plots with selectable x and y axes for EDA.
 X and Y variables can be interactively changed, along with
-Plotly actions such as zoom, pan and save
+Plotly actions such as zoom, pan and save.
 }
 \examples{
 ploxy(df)

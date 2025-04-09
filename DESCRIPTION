@@ -1,9 +1,10 @@
 Package: toccatr
 Type: Package
 Title: Help functions for use with Opera and HCS data
-Version: 1.12
+Version: 1.13
 Description: toccatr package by James Smith Talisman Therapeutics
     Change notes 
+    v1.13 - Fixed custom font display
     v1.12 - Loggy function
     v1.11 - Added U function
     v1.10 - Changed ploxy and ploxytime legend title display
@@ -24,6 +25,6 @@ Imports:
     plotly,
     readr,
     shiny,
-    showtext,
-    tidyr
+    tidyr,
+    ragg
 Encoding: UTF-8

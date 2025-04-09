@@ -15,6 +15,7 @@ A List of colours inspired by the London Underground Map
 }
 \details{
 This vector contains a list of distinct 23 colours: after 16 it becomes greyscale.
+Note that for optimal visual distinction, it's recommended to use no more than 16 colors.
 }
 \examples{
 tubemap
