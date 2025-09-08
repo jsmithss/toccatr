@@ -24,6 +24,10 @@ source("//10.0.3.251/Projects/Lab reference/Settings and Scientific Reference/sl
 
 ```
 
+Include stopifnot() for plate loading, platemap, hotplate
+https://waterdata.usgs.gov/blog/rds-assertions/
+
+Add in anonny to anonymise a variable with either pokemon names or random words
 
 Need to add prismy_time for timecourse data and prismy_group for grouped format prism data
 
