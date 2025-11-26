@@ -23,7 +23,7 @@ Reformats your data so each group specified has its own column in prism
 This is for a single column per group; replicates are listed vertically
 }
 \examples{
-forprism <- prismy_col(df, number_of_cells, compound)
+forprism <- example_timecourse |> filter(timepoint == 1) |> prismy_col(intensity, compound)
 xx <- starwars \%>\% filter(!is.na(species) & !is.na(height))
 prism_out <- prismy_col(xx, height, species)
 }

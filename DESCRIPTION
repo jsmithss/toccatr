@@ -1,9 +1,10 @@
 Package: toccatr
 Type: Package
 Title: Help functions for use with Opera and HCS data
-Version: 1.13
+Version: 1.14
 Description: toccatr package by James Smith Talisman Therapeutics
     Change notes 
+    v1.14 - Coselectr now uses DT, added prismy_time and anony functions
     v1.13 - Fixed custom font display
     v1.12 - Loggy function
     v1.11 - Added U function
@@ -15,7 +16,7 @@ Description: toccatr package by James Smith Talisman Therapeutics
 License: GPL-3
 Author: James Smith [aut, cre]
 Maintainer: James Smith <james.smith@talisman-therapeutics.com>
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports: 
     dplyr,
     forcats,
@@ -26,7 +27,9 @@ Imports:
     readr,
     shiny,
     tidyr,
-    ragg
+    ragg,
+    DT,
+    rlang
 Encoding: UTF-8
 Depends: 
     R (>= 3.5)

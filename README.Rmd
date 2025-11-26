@@ -54,6 +54,7 @@ A full lit of functions is found below:
 * `clip2xl()` Copy data from R dataframe to clipboard for pasting to Excel  
 * `clip2csv()` Copy data from R dataframe to csv format  
 * `prismy_col()` Reformat data for Prism column tables  
+* `prismy_time()` Reformat timecourse data for Prism grouped tables  
 
 **Data frame tools**  
 * `jiggle()` Move all text columns to the left of the dataframe  
@@ -65,7 +66,9 @@ A full lit of functions is found below:
 * `squish()` Limit upper and lower values of variable  
 * `%nin%()` Select items Not in a list  
 * `u()` List unique items in a variable in df dataframe  
-* `loggy()` Log transform all numeric variables  
+* `loggy()` Log transform all numeric variables with adjustment for values below 1  
+* `anony()` Recode a variable with an anonymised name    
+
 
 **Visualisation**  
 * `platemap()` 96 well plate layouts by compound or treatment  

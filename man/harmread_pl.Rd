@@ -20,6 +20,8 @@ Any file named using Harmony default convention of PlateResults.txt is included
 Platename and Evaluation number is added to each row,
 this info comes from the metadata in the head of the txt file.
 Multiple plates are appended to the bottom of the resulting dataframe
+
+Long path names (>260 characters) are not supported. It is recommended to use path = "./" to look in any directories below the current.
 }
 \examples{
 df <- harmread_pl("/my_subdirectory")
