@@ -32,5 +32,5 @@ Imports:
     rlang
 Encoding: UTF-8
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1)
 LazyData: true
