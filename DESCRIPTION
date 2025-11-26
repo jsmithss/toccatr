@@ -28,3 +28,6 @@ Imports:
     tidyr,
     ragg
 Encoding: UTF-8
+Depends: 
+    R (>= 3.5)
+LazyData: true

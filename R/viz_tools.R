@@ -115,8 +115,9 @@ theme_tt2 = function(){
       panel.grid = element_blank(),
       text = element_text(family = "Fira sans"),
       plot.title = element_text(
-        hjust = 0.5, size = 16, margin = margin(b = 30)
+        hjust = 0.5, size = 16, margin = margin(b = 4)
       ),
+      plot.subtitle = ggplot2::element_text(hjust = 0.5),
       plot.background = element_rect(fill = "#ffffff", colour = "#ffffff"),
       legend.margin = margin(t = 0)
     )

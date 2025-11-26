@@ -9,6 +9,8 @@
 #' this info comes from the metadata in the head of the txt file.
 #' Multiple plates are appended to the bottom of the resulting dataframe
 #' 
+#' Long path names (>260 characters) are not supported. It is recommended to use path = "./" to look in any directories below the current.
+#' 
 #' @param pthname Path or directory to read
 #' @return Dataframe
 #' @examples

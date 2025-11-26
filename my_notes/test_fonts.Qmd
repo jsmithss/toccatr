@@ -32,7 +32,7 @@ date: "2025-03-13"
 
 library(pacman)
 p_load(tidyverse, janitor, knitr)
-
+p_load(toccatr)
 
 
 today <- format(Sys.Date(), format="%Y-%m-%d")
@@ -88,17 +88,58 @@ theme_tt2 = function(){
 }
 
 
+```
+
+
+
+```{r}
+#| label: graphz
+#| warning: false
+
+
+
 
 
 ggplot(data = mtcars, aes(x = disp, y= mpg, color = factor(cyl), size = wt)) +
   geom_point() +
   scale_color_manual(values = tubemap, labels = c("four", "six", "EIGHT!")) + #point colours and label names
-  labs(title = "My scatter", subtitle = "My subtitle", caption = "This is my data source", colour = "Cylz", size = "Weight\n(1000 lbs)", x = "Engine size", y = "") + # changes labels for various chart components, removes y axis label completely
+  labs(title = "My scatter TT", subtitle = "My subtitle", caption = "This is my data source", colour = "Cylz", size = "Weight\n(1000 lbs)", x = "Engine size", y = "") + # changes labels for various chart components, removes y axis label completely
+  scale_x_continuous(expand = expansion(mult = c(0, 0.1)), limits = c(0, 500))  + #set precise axis limits with no buffer
+  theme_tt()
+
+
+
+ggplot(data = mtcars, aes(x = disp, y= mpg, color = factor(cyl), size = wt)) +
+  geom_point() +
+  scale_color_manual(values = tubemap, labels = c("four", "six", "EIGHT!")) + #point colours and label names
+  labs(title = "My scatter TT2", subtitle = "My subtitle", caption = "This is my data source", colour = "Cylz", size = "Weight\n(1000 lbs)", x = "Engine size", y = "") + # changes labels for various chart components, removes y axis label completely
   scale_x_continuous(expand = expansion(mult = c(0, 0.1)), limits = c(0, 500))  + #set precise axis limits with no buffer
   theme_tt2()
 
 
+theme_tt3 <- function() {
+  ggplot2::theme_minimal() +
+    ggplot2::theme(
+      legend.position = "bottom",
+      axis.line = ggplot2::element_line(colour = "grey50"),
+      axis.ticks = ggplot2::element_line(colour = "grey70", linewidth = 0.2),
+      panel.grid = ggplot2::element_blank(),
+      text = ggplot2::element_text(family = "Calibri"),
+      plot.title = ggplot2::element_text(
+        hjust = 0.5, size = 16, margin = ggplot2::margin(b = 4)
+      ),
+      plot.subtitle = ggplot2::element_text(hjust = 0.5),
+      plot.background = ggplot2::element_rect(fill = "#ffffff", colour = "#ffffff"),
+      legend.margin = ggplot2::margin(t = 0)
+    )
+}
 
+ggplot(data = mtcars, aes(x = disp, y= mpg, color = factor(cyl), size = wt)) +
+  geom_point() +
+  scale_color_manual(values = tubemap, labels = c("four", "six", "EIGHT!")) + #point colours and label names
+  labs(title = "My scatter TT3", subtitle = "My subtitle", caption = "This is my data source", colour = "Cylz", size = "Weight\n(1000 lbs)", x = "Engine size", y = "") + # changes labels for various chart components, removes y axis label completely
+  scale_x_continuous(expand = expansion(mult = c(0, 0.1)), limits = c(0, 500))  + #set precise axis limits with no buffer
+  theme_tt3()
 
 ```
 

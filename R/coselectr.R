@@ -13,14 +13,19 @@
 #' selected_data <- coselectr(mtcars)
 #' @import shiny
 #' @import dplyr
+#' @import DT
 #' @export
 coselectr <- function(df) {
   # Ensure required packages are available
   if (!requireNamespace("shiny", quietly = TRUE)) {
     stop("shiny package is required. Please install it with install.packages('shiny')")
   }
+  if (!requireNamespace("DT", quietly = TRUE)) {
+    stop("DT package is required. Please install it with install.packages('DT')")
+  }
   require(tidyverse)
   require(shiny)
+  require(DT)
   
   # UI Definition
   ui <- fluidPage(
@@ -50,8 +55,8 @@ coselectr <- function(df) {
         actionButton("deselect_all", "Deselect All")
       ),
       mainPanel(
-        # Data preview
-        dataTableOutput("selected_data_preview")
+        # Data preview - FIXED: Use DT::DTOutput() instead of dataTableOutput()
+        DT::DTOutput("selected_data_preview")
       )
     )
   )
@@ -108,19 +113,17 @@ coselectr <- function(df) {
     })
     
     # When app closes, return the selected columns  FIX THIS
- #   session$onSessionEnded(function() {
-  #    stopApp(return_columns())
-  #  })
+    #  session$onSessionEnded(function() {
+    #    stopApp(return_columns())
+    #  })
   }
   
   # Run the Shiny app and capture the result
   selected_cols <- runApp(shinyApp(ui, server), display.mode = "normal")
   
   # Print the comma-separated list of selected columns to console
-  cat("Selected Columns:", paste(selected_cols, collapse = ", "), "\n")
+  #cat("Selected Columns:", paste(selected_cols, collapse = ", "), "\n")
   
   # Return the selected columns from the original dataframe
- # return(df %>% dplyr::select(all_of(selected_cols)))
+  # return(df %>% dplyr::select(all_of(selected_cols)))
 }
-
-
