@@ -480,8 +480,8 @@ barchartr <- function(dfname, varname, groupnames,
 #' @examples
 #' ploxy(df)
 #' ploxy(mtcars)
-#' @importFrom shiny fluidPage titlePanel fluidRow column plotlyOutput selectInput renderPlotly req
-#' @importFrom plotly plot_ly layout hide_colorbar
+#' @importFrom shiny fluidPage titlePanel fluidRow column selectInput req downloadButton downloadHandler
+#' @importFrom plotly plot_ly layout hide_colorbar plotlyOutput renderPlotly 
 #' @export
 ploxy <- function(data) {
   # Input validation
@@ -579,8 +579,8 @@ ploxy <- function(data) {
 #' @examples
 #' ploxytime(df)
 #' ploxytime(df, "date")
-#' @importFrom shiny fluidPage titlePanel fluidRow column plotlyOutput selectInput renderPlotly req
-#' @importFrom plotly plot_ly layout hide_colorbar animation_opts animation_slider
+#' @importFrom shiny fluidPage titlePanel fluidRow column selectInput req downloadButton downloadHandler
+#' @importFrom plotly plot_ly layout hide_colorbar plotlyOutput renderPlotly animation_opts animation_slider
 #' @export
 ploxytime <- function(data, timevariable = "timepoint") {
   # Input validation

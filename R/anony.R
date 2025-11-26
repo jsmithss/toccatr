@@ -13,6 +13,7 @@
 #' anonymized_penguins <- anony(penguins, species, pokemonz, 123)
 #' 
 #' @import dplyr rlang
+#' @export
 anony <- function(data, var_name, word_list = pokemonz, seed = NULL) {
   
   # Set seed for reproducibility if provided

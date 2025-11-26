@@ -11,9 +11,11 @@
 #' @examples
 #' coselectr(mtcars)
 #' selected_data <- coselectr(mtcars)
-#' @import shiny
 #' @import dplyr
-#' @import DT
+#' @importFrom DT DTOutput renderDT
+#' @importFrom shiny fluidPage titlePanel checkboxGroupInput updateCheckboxGroupInput
+#' @importFrom shiny observeEvent actionButton reactiveVal runApp shinyApp uiOutput renderUI
+#' @importFrom shiny renderText textOutput
 #' @export
 coselectr <- function(df) {
   # Ensure required packages are available
