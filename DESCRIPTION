@@ -1,9 +1,10 @@
 Package: toccatr
 Type: Package
 Title: Help functions for use with Opera and HCS data
-Version: 1.14
+Version: 1.15
 Description: toccatr package by James Smith Talisman Therapeutics
     Change notes 
+    v1.15 - Added evals_to_wide function
     v1.14 - Coselectr now uses DT, added prismy_time and anony functions
     v1.13 - Fixed custom font display
     v1.12 - Loggy function

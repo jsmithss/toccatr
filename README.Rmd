@@ -50,6 +50,7 @@ A full lit of functions is found below:
 **Importing and exporting data**  
 * `harmread_pl()` Read multiple plate results files into one dataframe  
 * `harmread_ob()` Read multiple object results files  
+* `evals_to_wide()` Pivot multiple evaluations from long format to wide for easy comparison  
 * `clipfromxl()` Copy data from clipboard (Excel) to R  
 * `clip2xl()` Copy data from R dataframe to clipboard for pasting to Excel  
 * `clip2csv()` Copy data from R dataframe to csv format  

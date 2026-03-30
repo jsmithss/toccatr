@@ -42,18 +42,6 @@ filtered_df <- iris %>%
   select compound and row col, 
   unique(0)
 
-####  Combine multiple evaluations for one plate
-
-dfcols <- df %>% select(-eval) %>% colnames() 
-df <- df %>% 
-  #mutate(eval_index = match(eval, unique(eval))) %>% 
-  pivot_wider(
-    names_from = eval_index, 
-    values_from = dfcols
-  )
- #colnames(df) <- str_replace(colnames(df), "_1", "")
-# removes columns which have identical values  - will also remove nas
-df2 <- df2[!duplicated(as.list(df2))]
 
 
 
